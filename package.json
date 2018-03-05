@@ -8,8 +8,5 @@
   "devDependencies": {
     "eslint": "^4.18.2",
     "eslint-config-gsandf-react": "^1.0.2"
-  },
-  "dependencies": {
-    "normalize.css": "^8.0.0"
   }
 }
