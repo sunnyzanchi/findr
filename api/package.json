@@ -1,0 +1,20 @@
+{
+  "name": "scavenge-api",
+  "version": "0.1.0",
+  "description": "The server side for scavenge",
+  "main": "index.js",
+  "author": "Zanchi <emzanchi@gmail.com> (https://github.com/zanchi)",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js",
+    "setup:db": "node ./scripts/setupDb.js"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "rethinkdbdash": "^2.3.31"
+  },
+  "devDependencies": {
+    "ora": "^2.0.0"
+  }
+}
