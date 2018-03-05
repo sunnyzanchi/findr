@@ -37,7 +37,7 @@ const sections = [
   },
 ];
 
-const Home = () => (
+const PublicHome = () => (
   <Page>
     <h1>Scavenge</h1>
     <Logo src="https://placehold.it/200/200" />
@@ -52,4 +52,4 @@ const Home = () => (
   </Page>
 );
 
-export default Home;
+export default PublicHome;
