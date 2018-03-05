@@ -1,0 +1,15 @@
+{
+  "name": "scavenge",
+  "version": "0.1.0",
+  "description": "A web app for scavenger hunts",
+  "main": "index.js",
+  "author": "Zanchi <emzanchi@gmail.com> (https://github.com/zanchi)",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-gsandf-react": "^1.0.2"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.0"
+  }
+}

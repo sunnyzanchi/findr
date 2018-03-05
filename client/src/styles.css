@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+}
+h1 {
+  font-family: 'Fugaz One', cursive;
+}

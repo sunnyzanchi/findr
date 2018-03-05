@@ -1,0 +1,13 @@
+{
+  "extends": "gsandf-react",
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "react/prop-types": 0,
+    "react/no-unknown-property": [2, { "ignore": ["class"] }]
+  },
+  "settings": {
+    "react": {
+        "pragma": "h"
+    }
+  }
+}
