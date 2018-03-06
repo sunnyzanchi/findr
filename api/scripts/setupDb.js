@@ -21,6 +21,8 @@ r
     return r.dbCreate('scavenge').run();
   })
   .then(_ => Promise.all([
+    r.db('scavenge').tableCreate('games').run(),
+    r.db('scavenge').tableCreate('lists').run(),
     r.db('scavenge').tableCreate('sessions').run(),
     r.db('scavenge').tableCreate('users').run(),
   ]))
