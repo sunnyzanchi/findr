@@ -1,4 +1,5 @@
 const {
+  GraphQLEnumType,
   GraphQLID,
   GraphQLInputObjectType,
   GraphQLInt,
@@ -11,6 +12,15 @@ const { GraphQLDateTime } = require('graphql-iso-date');
 const { Play } = require('./playType');
 const { Team } = require('./teamType');
 const { User } = require('../users');
+
+const GameStatus = new GraphQLEnumType({
+  name: 'GameStatus',
+  values: {
+    COMPLETE: { value: 'COMPLETE' },
+    STARTED: { value: 'STARTED' },
+    WAITING: { value: 'WAITING' },
+  },
+});
 
 const Game = new GraphQLObjectType({
   fields: {
@@ -45,6 +55,9 @@ const Game = new GraphQLObjectType({
       description: 'A list of descriptions of every time a player scores',
       type: new GraphQLList(Play),
     },
+    status: {
+      type: GameStatus,
+    },
     teams: {
       type: new GraphQLList(Team),
     },
@@ -55,7 +68,7 @@ const Game = new GraphQLObjectType({
 const GameInputType = new GraphQLInputObjectType({
   fields: {
     duration: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLInt),
     },
     maxPlayersPerTeam: {
       type: GraphQLInt,
