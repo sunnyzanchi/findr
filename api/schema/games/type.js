@@ -3,10 +3,11 @@ const {
   GraphQLInputObjectType,
   GraphQLInt,
   GraphQLList,
+  GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
 } = require('graphql');
-const GraphQLDate = require('graphql-date');
+const { GraphQLDateTime } = require('graphql-iso-date');
 const { Play } = require('./playType');
 const { Team } = require('./teamType');
 const { User } = require('../users');
@@ -14,7 +15,7 @@ const { User } = require('../users');
 const Game = new GraphQLObjectType({
   fields: {
     created: {
-      type: GraphQLDate,
+      type: GraphQLDateTime,
     },
     createdBy: {
       type: User,
@@ -63,7 +64,7 @@ const GameInputType = new GraphQLInputObjectType({
       type: GraphQLInt,
     },
     name: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
     },
   },
   name: 'GameInputType',

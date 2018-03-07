@@ -5,7 +5,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
 } = require('graphql');
-const { User } = require('./users');
+const { User } = require('../users');
 
 const Team = new GraphQLObjectType({
   fields: {
