@@ -1,6 +1,7 @@
-node_modules/
-api/node_modules/
 api/.env
+api/node_modules/
+api/rethinkdb_data/
 client/.cache/
 client/dist/
 client/node_modules/
+node_modules/
