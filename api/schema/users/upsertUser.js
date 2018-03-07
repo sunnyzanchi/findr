@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { GraphQLNonNull } = require('graphql');
 const { db, r } = require('../../db');
 const { User, UserInputType } = require('./type');
 
@@ -7,7 +8,7 @@ const SALT_ROUNDS = 12;
 const upsertUser = {
   args: {
     user: {
-      type: UserInputType,
+      type: new GraphQLNonNull(UserInputType),
     },
   },
   resolve: async (_, { user }) => {
