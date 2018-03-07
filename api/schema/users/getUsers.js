@@ -1,4 +1,5 @@
 const { GraphQLInt, GraphQLList, GraphQLString } = require('graphql');
+const { GraphQLNonNull } = require('graphql');
 const { createLimitedQuery, db } = require('../../db');
 const { User } = require('./type');
 
@@ -8,7 +9,7 @@ const getUsers = {
       type: GraphQLInt,
     },
     search: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
     },
   },
   description: 'Search for a user by part of their username',
