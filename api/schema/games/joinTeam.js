@@ -10,9 +10,12 @@ const joinTeam = {
     teamId: {
       type: GraphQLID,
     },
+    userId: {
+      type: GraphQLID,
+    },
   },
   // TODO: Add check for if the team has reached capacity
-  resolve: async (_, { gameId, teamId }) => {
+  resolve: async (_, { gameId, teamId, userId }) => {
     const result = await
       db
         .table('games')
@@ -25,7 +28,7 @@ const joinTeam = {
                 // TODO: Add the user from the current sessions
                 // This can be done after https://github.com/zanchi/scavenge/issues/5
                 players: team('players').append({
-                  id: Math.random(),
+                  id: userId,
                   ready: false,
                 }),
               }),
