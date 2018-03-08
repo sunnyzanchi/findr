@@ -9,7 +9,7 @@ const queries = {
 };
 
 const mutations = {
-  user: upsertList,
+  list: upsertList,
 };
 
 module.exports = {
