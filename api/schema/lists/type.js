@@ -5,7 +5,6 @@ const {
   GraphQLString,
 } = require('graphql');
 const { GraphQLDateTime } = require('graphql-iso-date');
-const Listname = require('./listname');
 
 const List = new GraphQLObjectType({
   fields: {
@@ -39,31 +38,28 @@ const List = new GraphQLObjectType({
       },
     },
   },
-  name: 'User',
+  name: 'List',
 });
 
-const UserInputType = new GraphQLInputObjectType({
+const ListInputType = new GraphQLInputObjectType({
   fields: {
-    email: {
+    createdBy: {
+      type: GraphQLID,
+    },
+    description: {
       type: GraphQLString,
     },
     id: {
       type: GraphQLID,
     },
-    password: {
+    name: {
       type: GraphQLString,
-    },
-    phone: {
-      type: GraphQLString,
-    },
-    username: {
-      type: Username,
     },
   },
-  name: 'UserInputType',
+  name: 'ListInputType',
 });
 
 module.exports = {
   List,
-  UserInputType,
+  ListInputType,
 };
