@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const { GraphQLNonNull } = require('graphql');
-const { db, r } = require('../../db');
+const { db } = require('../../db');
 const { User, UserInputType } = require('./type');
 
 const SALT_ROUNDS = 12;
@@ -36,7 +36,7 @@ const upsertUser = {
       .filter({ username: user.username })
       .count()
       .do(count =>
-        r.branch(
+        db.branch(
           count.gt(0),
           'EXISTS',
           db.table('users').insert({
