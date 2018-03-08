@@ -16,7 +16,9 @@
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.1",
     "graphql-iso-date": "^3.5.0",
-    "rethinkdbdash": "^2.3.31"
+    "random-color": "^1.0.1",
+    "rethinkdbdash": "^2.3.31",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.17.1",

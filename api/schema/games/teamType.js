@@ -1,5 +1,6 @@
 const {
   GraphQLID,
+  GraphQLInputObjectType,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
@@ -28,4 +29,16 @@ const Team = new GraphQLObjectType({
   name: 'Team',
 });
 
-module.exports = { Team };
+const TeamInputType = new GraphQLInputObjectType({
+  fields: {
+    color: {
+      type: GraphQLString,
+    },
+    name: {
+      type: GraphQLString,
+    },
+  },
+  name: 'TeamInputType',
+});
+
+module.exports = { Team, TeamInputType };
