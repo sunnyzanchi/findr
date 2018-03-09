@@ -1,4 +1,3 @@
-require('dotenv').config();
 const r = require('rethinkdbdash')({
   host: process.env.DB_HOST,
   post: process.env.DB_POST,
