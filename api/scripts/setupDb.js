@@ -1,5 +1,8 @@
 const ora = require('ora');
-const { r } = require('../db');
+const r = require('rethinkdbdash')({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+});
 
 const pause = time => new Promise(resolve => setTimeout(resolve, time));
 
