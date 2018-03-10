@@ -6,6 +6,7 @@ const { db } = require('./db');
 const store = new RDBStore(db, {
   browserSessionsMaxAge: 60000,
   clearInterval: 60000,
+  table: 'sessions',
 });
 
 const secret = process.env.SESSION_SECRET;
