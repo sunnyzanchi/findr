@@ -1,6 +1,7 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const { GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
+const { dissoc } = require('ramda');
 const { db } = require('../../db');
 
 const login = {
@@ -13,18 +14,26 @@ const login = {
     },
   },
   resolve: async (_, { password, username }, context) => {
-    // This query is crashing the API intermittently?
-    const realHash = await
+    const user = await
       db
         .table('users')
         .filter({ username })
-        .nth(0)('password')
+        .nth(0)
+        .default({})
         .run();
 
-    const same = await bcrypt.compare(password, realHash);
+    if (!user.id) {
+      throw Error('Username not found');
+    }
+
+    const same = await bcrypt.compare(password, user.password);
     if (!same) {
       throw Error('Incorrect password');
     }
+
+    // express-session relies on us mutating the req.session to set the session
+    context.req.session.user = dissoc('password', user);
+
     return true;
   },
   type: GraphQLBoolean,
