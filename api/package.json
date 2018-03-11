@@ -15,10 +15,13 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "express-graphql": "^0.6.12",
+    "express-session": "^1.15.6",
     "graphql": "^0.13.1",
     "graphql-iso-date": "^3.5.0",
     "random-color": "^1.0.1",
     "rethinkdbdash": "^2.3.31",
+    "ramda": "^0.25.0",
+    "session-rethinkdb": "^2.0.1",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

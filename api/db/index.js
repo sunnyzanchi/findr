@@ -1,4 +1,3 @@
-require('dotenv').config();
 const db = require('rethinkdbdash')({
   db: 'scavenge',
   host: process.env.DB_HOST,
