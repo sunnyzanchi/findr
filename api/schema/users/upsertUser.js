@@ -1,9 +1,15 @@
 const bcrypt = require('bcrypt');
 const { GraphQLNonNull } = require('graphql');
-const { db, r } = require('../../db');
+const { db } = require('../../db');
 const { User, UserInputType } = require('./type');
 
-const SALT_ROUNDS = 12;
+const SALT_ROUNDS = Number(process.env.PW_SALT_ROUNDS);
+
+if (!SALT_ROUNDS || !Number.isInteger(SALT_ROUNDS)) {
+  throw Error(`Scavenge config error:
+SALT_ROUNDS must be defined as an environment variable and must be an integer
+`);
+}
 
 const upsertUser = {
   args: {
@@ -36,7 +42,7 @@ const upsertUser = {
       .filter({ username: user.username })
       .count()
       .do(count =>
-        r.branch(
+        db.branch(
           count.gt(0),
           'EXISTS',
           db.table('users').insert({
