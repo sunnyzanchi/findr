@@ -1,3 +1,4 @@
+require('dotenv').config();
 const ora = require('ora');
 const r = require('rethinkdbdash')({
   host: process.env.DB_HOST,
