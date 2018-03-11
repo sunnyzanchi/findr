@@ -1,4 +1,3 @@
-require('dotenv').config();
 const bcrypt = require('bcrypt');
 const { GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
 const { dissoc } = require('ramda');
