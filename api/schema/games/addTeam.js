@@ -1,9 +1,20 @@
 const { GraphQLID, GraphQLNonNull } = require('graphql');
 const randomColor = require('random-color');
 const { db } = require('../../db');
+const { isLoggedIn } = require('../../utils/auth');
 const { Team, TeamInputType } = require('./teamType');
 const uuid = require('uuid/v4');
 
+/**
+ * This lets a player create a new team in a game that has not started.
+ * If the game is not in WAITING state, (STARTED or COMPLETE),
+ * it will throw an error.
+ *
+ * Adding a new team will also put the player making the request on that team.
+ * If the player is already on another team, it will remove them from that team.
+ * If the team that they are leaving consists solely of that player,
+ * that team will be removed.
+ */
 const addTeam = {
   args: {
     gameId: {
@@ -13,7 +24,13 @@ const addTeam = {
       type: new GraphQLNonNull(TeamInputType),
     },
   },
-  resolve: async (_, { gameId, team }) => {
+  resolve: async (_, { gameId, team }, context) => {
+    if (!isLoggedIn(context.req)) {
+      throw Error('Must be logged in to add a team');
+    }
+
+    const currentUserId = context.req.session.user.id;
+
     const result = await db
       .table('games')
       .get(gameId)
@@ -25,7 +42,21 @@ const addTeam = {
             ),
             db.error('Team with that name already exists'),
             {
-              teams: game('teams')
+              teams: game('teams').fold(
+                [],
+                (acc, t) => db.branch(
+                  t('players').count().eq(1).and(
+                    t('players').contains(currentUserId)
+                  ),
+                  acc,
+                  acc.append(
+                    t.merge({
+                      players: t('players').difference([currentUserId]),
+                    })
+                  )
+                )
+              )
+                .default([])
                 .append({
                   ...team,
                   color: team.color || randomColor().hexString(),
@@ -33,16 +64,9 @@ const addTeam = {
                   // non-deterministic which would force us to use the nonAtomic
                   // flag for this query
                   id: uuid(),
-                  // TODO: Add player making the team from the current session
-                  // This can be done after https://github.com/zanchi/scavenge/issues/5
-                  // is implemented
-                  players: [],
+                  players: [currentUserId],
                 }),
-            }
-          ),
-      {
-        returnChanges: true,
-      })
+            }), { returnChanges: true })
       .run();
 
     if (result.first_error) {
