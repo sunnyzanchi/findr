@@ -21,7 +21,7 @@ const Team = new GraphQLObjectType({
       type: GraphQLString,
     },
     players: {
-      resolve: (team) => userLoader().loadMany(team.players.map(p => p.id)),
+      resolve: (team) => userLoader().loadMany(team.players),
       type: new GraphQLList(UserInGame),
     },
     score: {

@@ -12,6 +12,7 @@ const { GraphQLDateTime } = require('graphql-iso-date');
 const { Play } = require('./playType');
 const { Team } = require('./teamType');
 const { User } = require('../users');
+const { userLoader } = require('../../loaders');
 
 const GameStatus = new GraphQLEnumType({
   name: 'GameStatus',
@@ -28,6 +29,7 @@ const Game = new GraphQLObjectType({
       type: GraphQLDateTime,
     },
     createdBy: {
+      resolve: (game) => userLoader().load(game.createdBy),
       type: User,
     },
     duration: {
