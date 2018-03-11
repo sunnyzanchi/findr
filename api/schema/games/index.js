@@ -1,18 +1,19 @@
-const addGame = require('./addGame');
 const addTeam = require('./addTeam');
+const createGame = require('./createGame');
+const getGame = require('./getGame');
 const joinTeam = require('./joinTeam');
 const readyStatus = require('./readyStatus');
 const { Game, GameInputType } = require('./type');
 
 const mutations = {
-  addGame,
   addTeam,
+  createGame,
   joinTeam,
   readyStatus,
 };
 
 const queries = {
-
+  game: getGame,
 };
 
 module.exports = {
