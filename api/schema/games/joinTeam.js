@@ -1,45 +1,64 @@
-const { GraphQLID } = require('graphql');
+const { GraphQLID, GraphQLNonNull } = require('graphql');
 const { db } = require('../../db');
+const { isLoggedIn } = require('../../utils/auth');
 const { Team } = require('./teamType');
 
 const joinTeam = {
   args: {
     gameId: {
-      type: GraphQLID,
+      type: new GraphQLNonNull(GraphQLID),
     },
     teamId: {
-      type: GraphQLID,
-    },
-    userId: {
-      type: GraphQLID,
+      type: new GraphQLNonNull(GraphQLID),
     },
   },
-  // TODO: Add check for if the team has reached capacity
-  resolve: async (_, { gameId, teamId, userId }) => {
+  resolve: async (_, { gameId, teamId }, context) => {
+    if (!isLoggedIn(context.req)) {
+      throw Error('Must be logged in to join a game');
+    }
+
+    const currentUserId = context.req.session.user.id;
+
     const result = await
       db
         .table('games')
         .get(gameId)
         .update(game => ({
-          teams: game('teams').map(team =>
-            db.branch(
-              team('id').eq(teamId),
-              team.merge({
-                // TODO: Add the user from the current sessions
-                // This can be done after https://github.com/zanchi/scavenge/issues/5
-                players: team('players').append({
-                  id: userId,
-                  ready: false,
-                }),
-              }),
-              team
-            )
+          teams: game('teams').fold(
+            [],
+            (acc, team) =>
+              db.branch(
+                team('id').eq(teamId),
+                acc.append(
+                  team.merge({
+                    players: db.branch(
+                      team('players')
+                        .count()
+                        .lt(game('maxPlayersPerTeam'))
+                        .default(true),
+                      team('players')
+                        .difference([currentUserId])
+                        .append(currentUserId),
+                      db.error('Team is at capacity')
+                    ),
+                  })
+                ),
+                db.branch(
+                  team('players').count().eq(1).and(
+                    team('players').contains(currentUserId)
+                  ),
+                  acc,
+                  acc.append(
+                    team.merge({
+                      players: team('players').difference([currentUserId]),
+                    })
+                  )
+                )
+              ),
           ),
-        }),
-        { returnChanges: true })
+        }), { returnChanges: true })
         .run();
 
-    console.log(result);
     if (result.first_error) {
       throw Error(result.first_error);
     }
