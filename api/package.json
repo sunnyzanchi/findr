@@ -7,10 +7,12 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon index.js",
-    "setup:db": "node ./scripts/setupDb.js"
+    "setup:db": "node ./scripts/setupDb.js",
+    "test": "cross-env NODE_ENV=test yarn run setup:db && nyc --reporter=html ava **/*.test.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
+    "cross-env": "^5.1.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "express-graphql": "^0.6.12",
@@ -22,7 +24,14 @@
     "session-rethinkdb": "^2.0.1"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
     "nodemon": "^1.17.1",
+    "nyc": "^11.6.0",
     "ora": "^2.0.0"
+  },
+  "ava": {
+    "require": [
+      "dotenv/config"
+    ]
   }
 }
