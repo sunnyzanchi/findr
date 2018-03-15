@@ -8,7 +8,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "setup:db": "node ./scripts/setupDb.js",
-    "test": "cross-env DB_NAME=scavenge-test nyc --reporter=html ava **/*.test.js"
+    "test": "cross-env NODE_ENV=test yarn run setup:db && nyc --reporter=html ava **/*.test.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
