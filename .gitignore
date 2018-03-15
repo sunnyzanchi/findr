@@ -1,4 +1,6 @@
 api/.env
+api/.nyc_output
+api/coverage
 api/node_modules/
 api/rethinkdb_data/
 client/.cache/
