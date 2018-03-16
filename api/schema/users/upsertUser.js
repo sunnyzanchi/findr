@@ -37,6 +37,15 @@ const upsertUser = {
       return result.changes[0].new_val;
     }
 
+    // We're inserting a new user
+    if (!user.username) {
+      throw Error('`username` is required for adding a new user');
+    }
+
+    if (!user.password) {
+      throw Error('`password` is required for adding a new user');
+    }
+
     const result = await db
       .table('users')
       .filter({ username: user.username })
@@ -55,7 +64,7 @@ const upsertUser = {
       .run();
 
     if (result === 'EXISTS') {
-      throw Error('User already exists');
+      throw Error('User already exists. To update a user, make sure to pass the id');
     }
 
     return result.changes[0].new_val;

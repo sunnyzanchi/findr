@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const auth = require('./auth');
+const { auth } = require('./auth');
 const schema = require('./schema');
 const app = express();
 
