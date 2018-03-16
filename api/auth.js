@@ -16,9 +16,12 @@ if (!secret) {
   );
 }
 
-module.exports = session({
-  resave: true,
-  saveUninitialized: false,
-  secret: process.env.SESSION_SECRET,
+module.exports = {
+  auth: session({
+    resave: true,
+    saveUninitialized: false,
+    secret: process.env.SESSION_SECRET,
+    store,
+  }),
   store,
-});
+};

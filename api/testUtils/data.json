@@ -2,10 +2,12 @@
   "users": [
     {
       "id": "111",
+      "password": "$2a$12$qbsqTknkqPjNaND87GKjjOok21kRmIFemtYlCwC54vm3.tE5ldTjO",
       "username": "a"
     },
     {
       "id": "222",
+      "password": "$2a$12$odAW7l28nSFCnDEj0Dr1geelNVbyJX4Hj0mlnrCZOSZCaFaOje3LK",
       "username": "b"
     },
     {
