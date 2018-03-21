@@ -6,11 +6,11 @@
   "author": "Zanchi <emzanchi@gmail.com> (https://github.com/zanchi)",
   "license": "MIT",
   "scripts": {
-    "coverage": "cross-env NODE_ENV=test yarn run setup:db && nyc --reporter=html ava **/*.test.js",
+    "coverage": "yarn run cross-env NODE_ENV=test yarn run setup:db && nyc --reporter=html ava **/*.test.js",
     "lint": "eslint db/ loaders/ schema/ testUtils/ scripts/ utils/ *.js",
     "start": "nodemon index.js",
     "setup:db": "node ./scripts/setupDb.js",
-    "test": "cross-env NODE_ENV=test yarn run setup:db && ava **/*.test.js"
+    "test": "yarn run cross-env NODE_ENV=test yarn run setup:db && ava **/*.test.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
