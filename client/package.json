@@ -6,6 +6,7 @@
   "author": "Zanchi <emzanchi@gmail.com> (https://github.com/zanchi)",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint src/",
     "start": "parcel -p 3000 ./src/index.html"
   },
   "devDependencies": {
