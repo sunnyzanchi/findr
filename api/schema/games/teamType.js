@@ -6,7 +6,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
 } = require('graphql');
-const { UserInGame } = require('./userInGameType');
+const { User } = require('../users');
 const { userLoader } = require('../../loaders');
 
 const Team = new GraphQLObjectType({
@@ -22,7 +22,7 @@ const Team = new GraphQLObjectType({
     },
     players: {
       resolve: (team) => userLoader().loadMany(team.players),
-      type: new GraphQLList(UserInGame),
+      type: new GraphQLList(User),
     },
     score: {
       type: GraphQLInt,

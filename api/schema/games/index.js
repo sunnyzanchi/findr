@@ -2,14 +2,12 @@ const addTeam = require('./addTeam');
 const createGame = require('./createGame');
 const getGame = require('./getGame');
 const joinTeam = require('./joinTeam');
-const readyStatus = require('./readyStatus');
 const { Game, GameInputType } = require('./type');
 
 const mutations = {
   addTeam,
   createGame,
   joinTeam,
-  readyStatus,
 };
 
 const queries = {
