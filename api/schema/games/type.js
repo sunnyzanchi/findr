@@ -18,8 +18,8 @@ const GameStatus = new GraphQLEnumType({
   name: 'GameStatus',
   values: {
     COMPLETE: { value: 'COMPLETE' },
+    PREGAME: { value: 'PREGAME' },
     STARTED: { value: 'STARTED' },
-    WAITING: { value: 'WAITING' },
   },
 });
 

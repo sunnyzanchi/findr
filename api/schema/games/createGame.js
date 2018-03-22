@@ -24,7 +24,7 @@ const createGame = {
           created: new Date(),
           createdBy: currentUserId,
           plays: [],
-          status: 'WAITING',
+          status: 'PREGAME',
           teams: [],
         },
         { returnChanges: true });
