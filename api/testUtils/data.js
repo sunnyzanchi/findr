@@ -7,7 +7,14 @@ module.exports = {
       name: 'TestGame1',
       plays: [],
       status: 'PREGAME',
-      teams: [],
+      teams: [
+        {
+          color: '#F99',
+          id: 't111',
+          name: 'TestTeam1',
+          players: [],
+        },
+      ],
     },
   ],
   'users': [
