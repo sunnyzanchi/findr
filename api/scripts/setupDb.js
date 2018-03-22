@@ -43,7 +43,7 @@ r
       return;
     }
     spinner.text = 'Setting up test database data';
-    const data = require('../testUtils/data.json');
+    const data = require('../testUtils/data.js');
 
     return Promise.all(
       Object.keys(data).map(key =>
