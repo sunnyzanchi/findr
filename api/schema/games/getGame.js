@@ -8,11 +8,18 @@ const getGame = {
       type: new GraphQLNonNull(GraphQLID),
     },
   },
-  resolve: (_, { id }) =>
-    db
+  resolve: async (_, { id }) => {
+    const result = await db
       .table('games')
       .get(id)
-      .run(),
+      .run();
+
+    if (result === null) {
+      throw Error('Could not find game with that id');
+    }
+
+    return result;
+  },
   type: Game,
 };
 
