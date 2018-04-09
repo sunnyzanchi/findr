@@ -1,0 +1,16 @@
+addons:
+  rethinkdb: '2.3.6'
+
+before_install:
+  - yarn --cwd ./api
+  - yarn --cwd ./client
+
+language: node_js
+
+node_js:
+  - 'node'
+
+script:
+  - yarn lint
+  - yarn test
+  

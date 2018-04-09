@@ -1,9 +1,15 @@
 const bcrypt = require('bcrypt');
 const { GraphQLNonNull } = require('graphql');
-const { db, r } = require('../../db');
+const { db } = require('../../db');
 const { User, UserInputType } = require('./type');
 
-const SALT_ROUNDS = 12;
+const SALT_ROUNDS = Number(process.env.PW_SALT_ROUNDS);
+
+if (!SALT_ROUNDS || !Number.isInteger(SALT_ROUNDS)) {
+  throw Error(`Scavenge config error:
+SALT_ROUNDS must be defined as an environment variable and must be an integer
+`);
+}
 
 const upsertUser = {
   args: {
@@ -31,12 +37,21 @@ const upsertUser = {
       return result.changes[0].new_val;
     }
 
+    // We're inserting a new user
+    if (!user.username) {
+      throw Error('`username` is required for adding a new user');
+    }
+
+    if (!user.password) {
+      throw Error('`password` is required for adding a new user');
+    }
+
     const result = await db
       .table('users')
       .filter({ username: user.username })
       .count()
       .do(count =>
-        r.branch(
+        db.branch(
           count.gt(0),
           'EXISTS',
           db.table('users').insert({
@@ -49,7 +64,7 @@ const upsertUser = {
       .run();
 
     if (result === 'EXISTS') {
-      throw Error('User already exists');
+      throw Error('User already exists. To update a user, make sure to pass the id');
     }
 
     return result.changes[0].new_val;

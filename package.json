@@ -8,5 +8,12 @@
   "devDependencies": {
     "eslint": "^4.18.2",
     "eslint-config-gsandf-react": "^1.0.2"
+  },
+  "scripts": {
+    "lint": "yarn lint:api && yarn lint:client",
+    "lint:api": "cd ./api && yarn lint",
+    "lint:client": "cd ./client && yarn lint",
+    "test": "yarn test:api",
+    "test:api": "cd ./api && yarn test"
   }
 }
