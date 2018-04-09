@@ -36,7 +36,7 @@ const upsertList = {
       .run();
 
     if (result === 'EXISTS') {
-      throw Error('User already exists');
+      throw Error('List already exists');
     }
 
     return result.changes[0].new_val;
