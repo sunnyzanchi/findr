@@ -1,7 +1,7 @@
 {
-  "name": "scavenge-api",
+  "name": "findr-api",
   "version": "0.1.0",
-  "description": "The server side for scavenge",
+  "description": "The server side for Findr",
   "main": "index.js",
   "author": "Zanchi <emzanchi@gmail.com> (https://github.com/zanchi)",
   "license": "MIT",

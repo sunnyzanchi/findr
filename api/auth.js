@@ -11,7 +11,7 @@ const store = new RDBStore(db, {
 const secret = process.env.SESSION_SECRET;
 
 if (!secret) {
-  throw Error(`Scavenge config error:
+  throw Error(`Findr config error:
 "SESSION_SECRET" must be defined as an environment variable`
   );
 }

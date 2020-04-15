@@ -1,8 +1,8 @@
-# Scavenge API
-This runs the API server for the Scavenge backend.
+# Findr API
+This runs the API server for the Findr backend.
 
 ## Database
-Scavenge uses a RethinkDB database because it's a document database and it has easy-to-use changefeeds for getting data to users in real-time.
+Findr uses a RethinkDB database because it's a document database and it has easy-to-use changefeeds for getting data to users in real-time.
 
 ### Setup
 To set up the database, make sure your .env file is pointing where you want:
