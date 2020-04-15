@@ -1,7 +1,0 @@
-.cls1 { /*!*/ }
-.cls2 {
-composes: cls1;
-
-font-size: 36px;
-text-align: center;
-}
