@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../src/**/*.story.js'],
+  stories: ['../src/**/*.stories.js'],
   addons: ['@storybook/addon-actions', '@storybook/addon-links'],
   webpackFinal: (config, { configType }) => {
     // Remove existing css rule

@@ -1,4 +1,3 @@
-import 'normalize.css'
 import { h, render } from 'preact'
 import Router from 'preact-router'
 import Home from './pages/Home'

@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "astroturf": "^0.10.3",
-    "normalize.css": "^8.0.1",
     "preact": "^10.4.0",
-    "preact-router": "^3.2.1"
+    "preact-router": "^3.2.1",
+    "reset-css": "^5.0.1"
   }
 }
