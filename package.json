@@ -1,5 +1,5 @@
 {
-  "name": "scavenge",
+  "name": "findr",
   "version": "0.1.0",
   "description": "A web app for scavenger hunts",
   "main": "index.js",

@@ -1,7 +1,7 @@
 {
-  "name": "scavenge-client",
+  "name": "findr-client",
   "version": "0.1.0",
-  "description": "The client side for scavenge",
+  "description": "The client side for Findr",
   "main": "index.js",
   "author": "Zanchi <emzanchi@gmail.com> (https://github.com/zanchi)",
   "license": "MIT",
