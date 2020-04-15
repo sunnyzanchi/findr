@@ -1,6 +1,11 @@
 {
+  "plugins": ["astroturf/plugin"],
   "presets": [
-    "env",
-    "preact"
+    [
+      "@babel/preset-react",
+      {
+        "pragma": "h"
+      }
+    ]
   ]
 }

@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Fugaz+One|Raleway&display=swap');
+
 * {
   box-sizing: border-box;
 }
+
 html {
   font-size: 62.5%;
 }
+
 body {
   color: #222;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
+  margin: 0;
 }
+
 h1 {
   font-family: 'Fugaz One', cursive;
 }
