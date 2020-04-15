@@ -1,0 +1,20 @@
+2018-04-08T21:25:26.460441000 0.021646s notice: Recursively removing directory /Users/clarkmcadoo/Documents/Zanchi-stuff/scavenge/rethinkdb_data/tmp
+2018-04-08T21:25:26.462303000 0.023511s notice: Initializing directory /Users/clarkmcadoo/Documents/Zanchi-stuff/scavenge/rethinkdb_data
+2018-04-08T21:25:26.462365000 0.023569s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/clarkmcadoo/Documents/Zanchi-stuff/scavenge/rethinkdb_data' did not already exist or is empty.)
+2018-04-08T21:25:26.462386000 0.023589s notice: Running rethinkdb 2.3.6 (CLANG 8.1.0 (clang-802.0.42))...
+2018-04-08T21:25:26.467549000 0.028753s notice: Running on Darwin 16.7.0 x86_64
+2018-04-08T21:25:26.467580000 0.028784s notice: Loading data from directory /Users/clarkmcadoo/Documents/Zanchi-stuff/scavenge/rethinkdb_data
+2018-04-08T21:25:26.592119000 0.153322s info: Automatically using cache size of 2802 MB
+2018-04-08T21:25:26.592657000 0.153861s notice: Listening for intracluster connections on port 29015
+2018-04-08T21:25:26.594691000 0.155894s notice: Listening for client driver connections on port 28015
+2018-04-08T21:25:26.594830000 0.156033s notice: Listening for administrative HTTP connections on port 8080
+2018-04-08T21:25:26.594832000 0.156035s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2018-04-08T21:25:26.594835000 0.156038s notice: Listening on driver addresses: 127.0.0.1, ::1
+2018-04-08T21:25:26.594837000 0.156040s notice: Listening on http addresses: 127.0.0.1, ::1
+2018-04-08T21:25:26.594841000 0.156044s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2018-04-08T21:25:26.594845000 0.156048s notice: Server ready, "Clarks_MBP_nc7" 3ff19558-658f-4a41-b346-d9add020d926
+2018-04-08T21:28:12.398317000 165.966071s notice: Server got SIGINT from pid 88160, uid 501; shutting down...
+2018-04-08T21:28:12.398465000 165.966218s notice: Shutting down client connections...
+2018-04-08T21:28:12.398581000 165.966334s notice: All client connections closed.
+2018-04-08T21:28:12.398588000 165.966341s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2018-04-08T21:28:12.401848000 165.969603s notice: Storage engine shut down.
