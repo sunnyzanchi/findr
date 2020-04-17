@@ -3,7 +3,6 @@ import styled from 'astroturf'
 import FullButton from '../../components/FullButton'
 import Header from '../../components/Header'
 
-
 const ButtonGroup = styled.div`
   align-items: center;
   display: flex;
@@ -18,12 +17,14 @@ const Container = styled.div`
   height: 100vh;
 `
 
-const Home = () => <Container>
+const Home = () => (
+  <Container>
     <Header />
     <ButtonGroup>
-        <Button>Create a Game</Button>
-        <Button>Find a Game</Button>
+      <FullButton>Create a Game</FullButton>
+      <FullButton>Find a Game</FullButton>
     </ButtonGroup>
-</Container>
+  </Container>
+)
 
 export default Home

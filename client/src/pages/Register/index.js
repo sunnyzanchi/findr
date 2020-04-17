@@ -8,7 +8,8 @@ const At = styled.p`
   color: #222;
   left: 0;
   position: absolute;
-  transform: translate(-25%);
+  transform: translate(-25%, 40%);
+  top: 0;
 `
 
 const AtContainer = styled.div`

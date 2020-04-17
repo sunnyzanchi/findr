@@ -1,12 +1,18 @@
 module.exports = {
   stories: ['../src/**/*.stories.js'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links'],
+  addons: [
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
+    '@storybook/addon-viewport/register',
+  ],
   webpackFinal: (config, { configType }) => {
     // Remove existing css rule
-    const cssIndex = config.module.rules.findIndex(r => r.test.test('index.css'))
+    const cssIndex = config.module.rules.findIndex(r =>
+      r.test.test('index.css')
+    )
     config.module.rules.splice(cssIndex, 1)
 
-    const cssConfig = {      
+    const cssConfig = {
       test: /\.s?css$/,
       use: ['style-loader', 'astroturf/css-loader', 'sass-loader'],
     }
