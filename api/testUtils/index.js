@@ -1,6 +1,6 @@
-const { graphql } = require('graphql');
-const { store } = require('../auth');
-const schema = require('../schema');
+const { graphql } = require('graphql')
+const { store } = require('../auth')
+const schema = require('../schema')
 
 /**
  * @param {string} query The query to test against the GraphQL schema
@@ -11,11 +11,11 @@ const gql = (query, variables, context) =>
   graphql(schema, query, undefined, context, variables)
     .then(result => {
       if (result.errors) {
-        throw result.errors;
+        throw result.errors
       }
-      return result.data;
+      return result.data
     })
-    .then(data => Object.values(data)[0]);
+    .then(data => Object.values(data)[0])
 
 /**
  * @return {object} An object with the same signature of the context that's passed by express
@@ -24,14 +24,14 @@ const httpContext = () => {
   const context = {
     req: {},
     res: {},
-  };
+  }
 
-  store.generate(context.req);
-  context.req.sessionStore = store;
-  return context;
-};
+  store.generate(context.req)
+  context.req.sessionStore = store
+  return context
+}
 
 module.exports = {
   gql,
   httpContext,
-};
+}

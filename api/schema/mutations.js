@@ -1,6 +1,6 @@
-const { GraphQLObjectType } = require('graphql');
-const { mutations: authMutations } = require('./auth');
-const { mutations: userMutations } = require('./users');
+const { GraphQLObjectType } = require('graphql')
+const { mutations: authMutations } = require('./auth')
+const { mutations: userMutations } = require('./users')
 
 const mutations = new GraphQLObjectType({
   fields: {
@@ -8,6 +8,6 @@ const mutations = new GraphQLObjectType({
     ...userMutations,
   },
   name: 'Mutations',
-});
+})
 
-module.exports = mutations;
+module.exports = mutations

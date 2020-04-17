@@ -1,5 +1,5 @@
-const { test } = require('ava');
-const { gql } = require('../../testUtils');
+const { test } = require('ava')
+const { gql } = require('../../testUtils')
 
 test('can take username argument', async t => {
   const query = `
@@ -8,13 +8,13 @@ test('can take username argument', async t => {
       id
       username
     }
-  }`;
+  }`
 
-  const user = await gql(query);
+  const user = await gql(query)
 
-  t.truthy(user.id);
-  t.true(user.username === 'a');
-});
+  t.truthy(user.id)
+  t.true(user.username === 'a')
+})
 
 test('can take id argument', async t => {
   const query = `
@@ -23,12 +23,12 @@ test('can take id argument', async t => {
       id
       username
     }
-  }`;
+  }`
 
-  const user = await gql(query);
-  t.truthy(user.id);
-  t.true(user.username === 'a');
-});
+  const user = await gql(query)
+  t.truthy(user.id)
+  t.true(user.username === 'a')
+})
 
 test('throws if neither argument is provided', async t => {
   const query = `
@@ -37,6 +37,6 @@ test('throws if neither argument is provided', async t => {
       id
       username
     }
-  }`;
-  await t.throws(gql(query));
-});
+  }`
+  await t.throws(gql(query))
+})

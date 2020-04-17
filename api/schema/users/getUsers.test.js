@@ -1,7 +1,7 @@
-const { test } = require('ava');
-const { gql } = require('../../testUtils');
+const { test } = require('ava')
+const { gql } = require('../../testUtils')
 
-const searchString = 'a';
+const searchString = 'a'
 
 test('can search by username', async t => {
   const query = `
@@ -11,14 +11,14 @@ test('can search by username', async t => {
       username
     }
   }
-  `;
-  const users = await gql(query);
+  `
+  const users = await gql(query)
 
   users.forEach(user => {
-    t.truthy(user.id);
-    t.true(user.username.toLowerCase().includes(searchString));
-  });
-});
+    t.truthy(user.id)
+    t.true(user.username.toLowerCase().includes(searchString))
+  })
+})
 
 test('respects limit argument', async t => {
   const query = `
@@ -28,14 +28,14 @@ test('respects limit argument', async t => {
       username
     }
   }
-  `;
-  const users = await gql(query);
+  `
+  const users = await gql(query)
 
-  t.true(Array.isArray(users));
-  t.true(users.length <= 2);
-});
+  t.true(Array.isArray(users))
+  t.true(users.length <= 2)
+})
 
-test('throws if search argument isn\'t provided', async t => {
+test("throws if search argument isn't provided", async t => {
   const query = `
   {
     users {
@@ -43,6 +43,6 @@ test('throws if search argument isn\'t provided', async t => {
       username
     }
   }
-  `;
-  await t.throws(gql(query));
-});
+  `
+  await t.throws(gql(query))
+})

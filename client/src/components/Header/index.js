@@ -28,9 +28,9 @@ const styles = css`
     position: absolute;
     left: ${PADDING}px;
   }
-`;
+`
 
-const Header = ({ showArrow = false, showMenu = false, }) => (
+const Header = ({ showArrow = false, showMenu = false }) => (
   <Wrapper>
     {showArrow && <LeftArrow className={styles.icon} height={32} width={32} />}
     {showMenu && <Menu className={styles.icon} height={32} width={32} />}

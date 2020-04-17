@@ -1,11 +1,11 @@
-const { test } = require('ava');
-const { gql } = require('../../testUtils');
+const { test } = require('ava')
+const { gql } = require('../../testUtils')
 
 test('should be able to add a user', async t => {
   const userToAdd = {
     password: 'a',
     username: 'upsertUserTest',
-  };
+  }
 
   const query = `
   mutation($user: UserInputType!) {
@@ -14,16 +14,16 @@ test('should be able to add a user', async t => {
       username
     }
   }
-  `;
+  `
 
-  const user = await gql(query, { user: userToAdd });
+  const user = await gql(query, { user: userToAdd })
 
-  t.truthy(user.id);
-  t.true(user.username === userToAdd.username);
-});
+  t.truthy(user.id)
+  t.true(user.username === userToAdd.username)
+})
 
 test('should be able to update a user', async t => {
-  const email = 'testing@example.com';
+  const email = 'testing@example.com'
   const query = `
   mutation {
     user(user: { id: 111, email: "${email}" }) {
@@ -31,13 +31,13 @@ test('should be able to update a user', async t => {
       email
       username
     }
-  }`;
+  }`
 
-  const user = await gql(query);
+  const user = await gql(query)
 
-  t.true(user.id === '111');
-  t.true(user.email === email);
-});
+  t.true(user.id === '111')
+  t.true(user.email === email)
+})
 
 test('throws if no user is provided', async t => {
   const query = `
@@ -47,9 +47,9 @@ test('throws if no user is provided', async t => {
       username
     }
   }
-  `;
-  await t.throws(gql(query));
-});
+  `
+  await t.throws(gql(query))
+})
 
 test('throws if no password is provided', async t => {
   const query = `
@@ -58,9 +58,9 @@ test('throws if no password is provided', async t => {
       id
       username
     } 
-  }`;
-  await t.throws(gql(query));
-});
+  }`
+  await t.throws(gql(query))
+})
 
 test('throws if no username is provided', async t => {
   const query = `
@@ -69,9 +69,9 @@ test('throws if no username is provided', async t => {
       id
       username
     } 
-  }`;
-  await t.throws(gql(query));
-});
+  }`
+  await t.throws(gql(query))
+})
 
 test('throws if trying to create a user with an existing username', async t => {
   const query = `
@@ -80,7 +80,7 @@ test('throws if trying to create a user with an existing username', async t => {
       id
       username
     }
-  }`;
+  }`
 
-  await t.throws(gql(query));
-});
+  await t.throws(gql(query))
+})

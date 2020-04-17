@@ -1,5 +1,5 @@
-const { test } = require('ava');
-const { gql, httpContext } = require('../../testUtils');
+const { test } = require('ava')
+const { gql, httpContext } = require('../../testUtils')
 
 test('logging out returns true and removes the user session', async t => {
   // we have to log in first
@@ -8,20 +8,20 @@ test('logging out returns true and removes the user session', async t => {
   const login = `
   mutation {
     login(username: "b", password: "b")
-  }`;
+  }`
 
-  const context = httpContext();
+  const context = httpContext()
 
   // this mutates context.req.session
-  await gql(login, undefined, context);
+  await gql(login, undefined, context)
 
   const query = `
   mutation {
     logout
-  }`;
+  }`
 
-  const result = await gql(query, undefined, context);
+  const result = await gql(query, undefined, context)
 
-  t.true(result);
-  t.falsy(context.req.session);
-});
+  t.true(result)
+  t.falsy(context.req.session)
+})

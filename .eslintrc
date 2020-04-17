@@ -1,13 +1,31 @@
 {
-  "extends": "gsandf-react",
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": ["prettier", "react"],
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    },
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true
+  },
   "rules": {
-    "comma-dangle": ["error", "always-multiline"],
+    "prettier/prettier": "error",
+    "react/display-name": 0,
     "react/prop-types": 0,
     "react/no-unknown-property": [2, { "ignore": ["class"] }]
   },
   "settings": {
     "react": {
-        "pragma": "h"
+      "pragma": "h",
+      "version": "16"
     }
   }
 }
