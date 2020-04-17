@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import { action } from '@storybook/addon-actions'
 
 import Header from '.'
 
@@ -8,5 +9,9 @@ export default {
 }
 
 export const Heading = () => <Header />
-export const WithArrow = () => <Header showArrow />
-export const WithMenu = () => <Header showMenu />
+export const WithArrow = () => (
+  <Header onArrow={action('Clicked arrow')} showArrow />
+)
+export const WithMenu = () => (
+  <Header onMenu={action('Clicked menu')} showMenu />
+)
