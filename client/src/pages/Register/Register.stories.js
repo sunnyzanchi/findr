@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import { action } from '@storybook/addon-actions'
 
 import Register from '.'
 
@@ -7,4 +8,4 @@ export default {
   component: Register,
 }
 
-export const Default = () => <Register />
+export const Default = () => <Register onSubmit={action('Form submitted')} />

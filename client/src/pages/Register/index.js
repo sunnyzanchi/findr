@@ -3,6 +3,8 @@ import { useState } from 'preact/hooks'
 import { styled } from 'astroturf'
 import FullButton from '../../components/FullButton'
 import Header from '../../components/Header'
+import Input from '../../components/Input'
+import Title from '../../components/Title'
 
 const At = styled.p`
   color: #222;
@@ -32,32 +34,6 @@ const FullButtonBottom = styled(FullButton)`
   margin-bottom: 0;
 `
 
-// We have a separate `invalid` class instead of just using the selector
-// because the browser is too eager to highlight invalid input
-const Input = styled.input`
-  color: #222;
-  border: 0;
-  border-bottom: 1px solid #ddd;
-  font-family: 'Raleway', sans-serif;
-  font-size: 18px;
-  font-weight: 300;
-  height: 28px;
-  margin-bottom: 6px;
-  padding: 7px 12px;
-  width: 100%;
-
-  &.invalid {
-    border-bottom: 1px solid #ff5959;
-  }
-
-  &:invalid {
-    box-shadow: none;
-  }
-
-  &:not(:only-of-type) {
-  }
-`
-
 const InputGroup = styled.div`
   margin-bottom: 44px;
 `
@@ -79,12 +55,8 @@ const Page = styled.div`
   height: 100vh;
 `
 
-const Title = styled.h1`
-  font-family: 'Raleway', sans-serif;
-  font-size: 24px;
-  font-weight: 100;
+const TitleText = styled(Title)`
   margin-bottom: 71px;
-  width: 100%;
 `
 
 const TopGroup = styled.div`
@@ -96,7 +68,7 @@ const validatePassword = password => password !== '' && password.length > 5
 const validateUsername = username =>
   username !== '' && /^[a-zA-Z0-9_]+$/.test(username)
 
-const Register = () => {
+const Register = ({ onSubmit }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
@@ -120,7 +92,7 @@ const Register = () => {
       <Header />
       <Container>
         <TopGroup>
-          <Title>Register for Findr!</Title>
+          <TitleText>Register for Findr!</TitleText>
 
           <InputGroup>
             <Input
@@ -170,7 +142,7 @@ const Register = () => {
 
         <FullButtonBottom
           disabled={!submittable}
-          onCLick={() => console.log(blurred)}
+          onCLick={() => onSubmit({ email, password, username })}
         >
           Register
         </FullButtonBottom>

@@ -8,7 +8,7 @@ export default {
   component: Header,
 }
 
-export const Heading = () => <Header />
+export const Default = () => <Header />
 export const WithArrow = () => (
   <Header onArrow={action('Clicked arrow')} showArrow />
 )
