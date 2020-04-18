@@ -2,6 +2,7 @@ import { h } from 'preact'
 import styled from 'astroturf'
 
 import {
+  FullButton,
   Header,
   Subtitle as SubtitleBase,
   Title as TitleBase,
@@ -17,6 +18,9 @@ const Avatar = styled.img`
 `
 
 const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin: 22px 32px;
 `
 
@@ -29,6 +33,10 @@ const ListItem = styled.li`
 
 const Subtitle = styled(SubtitleBase)`
   margin-bottom: 22px;
+`
+
+const TeamContainer = styled.div`
+  width: 100%;
 `
 
 const TeamList = styled.ul`
@@ -59,7 +67,7 @@ const Title = styled(TitleBase)`
   margin-bottom: 4px;
 `
 
-const Lobby = ({ subtitle, teams, title }) => {
+const Lobby = ({ onStart, showStart, subtitle, teams, title }) => {
   return (
     <div>
       <Header />
@@ -68,7 +76,7 @@ const Lobby = ({ subtitle, teams, title }) => {
         <Subtitle>{subtitle}</Subtitle>
 
         {teams.map(team => (
-          <div key={team.name}>
+          <TeamContainer key={team.name}>
             <TeamHeader color={team.color} name={team.name} />
 
             <TeamList small={team.players.length > 4}>
@@ -79,8 +87,10 @@ const Lobby = ({ subtitle, teams, title }) => {
                 </ListItem>
               ))}
             </TeamList>
-          </div>
+          </TeamContainer>
         ))}
+
+        {showStart && <FullButton onClick={onStart}>Start Game</FullButton>}
       </Container>
     </div>
   )

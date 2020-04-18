@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import { action } from '@storybook/addon-actions'
 
 import Lobby from '.'
 import TeamHeader from './TeamHeader'
@@ -34,6 +35,12 @@ const teams = [
 ]
 
 export const Default = () => (
-  <Lobby subtitle="List of 34 items" teams={teams} title="Juan's Game" />
+  <Lobby
+    onStart={action('Clicked start')}
+    showStart
+    subtitle="List of 34 items"
+    teams={teams}
+    title="Juan's Game"
+  />
 )
 export const Header = () => <TeamHeader color="#ff4c4c" name="The A Team" />

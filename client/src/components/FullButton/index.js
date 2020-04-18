@@ -10,7 +10,6 @@ const FullButton = styled.button`
   font-size: 24px;
   font-weight: 700;
   height: 60px;
-  margin-bottom: 60px;
   text-transform: uppercase;
   transition: 160ms background-color;
   width: 80%;

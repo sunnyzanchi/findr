@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { useRef, useState, useEffect } from 'preact/hooks'
 
-import FullButton from '../../components/FullButton'
+import { FullButton as FullButtonBase } from '../../components'
 import Header from '../../components/Header'
 import Input from '../../components/Input'
 import Title from '../../components/Title'
@@ -22,6 +22,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 46px 32px;
+`
+
+const FullButton = styled(FullButtonBase)`
+  margin-bottom: 60px;
 `
 
 const ListItem = styled.li`

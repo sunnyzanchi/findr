@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import styled from 'astroturf'
-import FullButton from '../../components/FullButton'
+import { FullButton as FullButtonBase } from '../../components'
 import Header from '../../components/Header'
 
 const ButtonGroup = styled.div`
@@ -9,6 +9,10 @@ const ButtonGroup = styled.div`
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
+`
+
+const FullButton = styled(FullButtonBase)`
+  margin-bottom: 60px;
 `
 
 const Container = styled.div`
