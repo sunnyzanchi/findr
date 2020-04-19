@@ -6,7 +6,7 @@ const { User, UserInputType } = require('./type')
 const SALT_ROUNDS = Number(process.env.PW_SALT_ROUNDS)
 
 if (!SALT_ROUNDS || !Number.isInteger(SALT_ROUNDS)) {
-  throw Error(`Scavenge config error:
+  throw Error(`Findr config error:
 SALT_ROUNDS must be defined as an environment variable and must be an integer
 `)
 }

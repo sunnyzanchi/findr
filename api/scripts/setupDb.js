@@ -1,5 +1,5 @@
 const ora = require('ora')
-const dbName = process.env.NODE_ENV === 'test' ? 'scavengeTest' : 'scavenge'
+const dbName = process.env.NODE_ENV === 'test' ? 'findrTest' : 'findr'
 const r = require('rethinkdbdash')({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,

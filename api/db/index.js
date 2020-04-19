@@ -1,4 +1,4 @@
-const dbName = process.env.NODE_ENV === 'test' ? 'scavengeTest' : 'scavenge'
+const dbName = process.env.NODE_ENV === 'test' ? 'findrTest' : 'findr'
 
 const db = require('rethinkdbdash')({
   db: dbName,
