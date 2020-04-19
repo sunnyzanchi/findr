@@ -11,3 +11,4 @@ client/node_modules/
 # them from being checked in atleast
 client/**/*.css
 node_modules/
+rethinkdb_data/
