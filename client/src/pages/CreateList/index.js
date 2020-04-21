@@ -113,6 +113,7 @@ const CreateList = ({ onBack, onSave }) => {
   }, [list])
 
   const onKeyDownName = e => {
+    console.log(nameInput)
     if (e.key !== 'Enter') return
 
     if (name === '' && namePh != null) {

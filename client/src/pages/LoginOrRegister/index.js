@@ -26,8 +26,12 @@ const LoginOrRegister = () => {
     <Container>
       <Header />
       <ButtonGroup>
-        <FullButton>Log In</FullButton>
-        <FullButton>Register</FullButton>
+        <FullButton as="a" href="/login">
+          Log In
+        </FullButton>
+        <FullButton as="a" href="/register">
+          Register
+        </FullButton>
       </ButtonGroup>
     </Container>
   )

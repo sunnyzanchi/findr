@@ -4,6 +4,7 @@ import Router from 'preact-router'
 import CreateList from './pages/CreateList'
 import Home from './pages/Home'
 import Lobby from './pages/Lobby'
+import Login from './pages/Login'
 import LoginOrRegister from './pages/LoginOrRegister'
 import Register from './pages/Register'
 
@@ -18,6 +19,7 @@ const App = () => {
       <LoginOrRegister path="/" />
       <Home path="/app" />
       <CreateList path="/create" />
+      <Login path="/login" />
       <Lobby path="/lobby" />
       <Register path="/register" />
     </Router>
