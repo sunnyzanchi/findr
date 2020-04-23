@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const { GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql')
 const { dissoc } = require('ramda')
 const { db } = require('../../db')
+const ERRORS = require('../errorCodes')
 
 const login = {
   args: {
@@ -21,12 +22,12 @@ const login = {
       .run()
 
     if (!user.id) {
-      throw Error('Email not found')
+      throw Error(ERRORS.EMAIL_NOT_FOUND)
     }
 
     const same = await bcrypt.compare(password, user.password)
     if (!same) {
-      throw Error('Incorrect password')
+      throw Error(ERRORS.INCORRECT_PASSWORD)
     }
 
     // express-session relies on us mutating the req.session to set the session
