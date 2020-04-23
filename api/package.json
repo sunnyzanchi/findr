@@ -11,10 +11,11 @@
     "lint": "eslint db/ loaders/ schema/ testUtils/ scripts/ utils/ *.js",
     "start": "node index.js",
     "setup:db": "node ./scripts/setupDb.js",
-    "test": "cross-env NODE_ENV=test yarn run setup:db && ava **/*.test.js"
+    "test": "cross-env NODE_ENV=test npm run setup:db && ava **/*.test.js"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
     "cross-env": "^5.1.4",
     "dataloader": "^2.0.0",
     "dotenv": "^5.0.1",

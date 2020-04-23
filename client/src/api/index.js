@@ -1,14 +1,16 @@
 const API = 'http://localhost:8000'
 
-const call = query =>
-  fetch(`${API}/graphql`, { body: JSON.stringify({ query }), method: 'POST' })
+const call = (query, variables) =>
+  fetch(`${API}/graphql`, {
+    body: JSON.stringify({ query, variables }),
+    headers: { ['Content-Type']: 'application/json' },
+    method: 'POST',
+  })
 
-export const login = ({ email, password }) => {
-  const query = `{
-    mutation {
-      login (email: "${email}", password: "${password}")
-    }
+export const login = variables => {
+  const query = `mutation {
+    login (email: $email, password: $password)
   }`
 
-  return call(query)
+  return call(query, variables)
 }

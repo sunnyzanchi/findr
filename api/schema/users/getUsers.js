@@ -12,10 +12,10 @@ const getUsers = {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  description: 'Search for a user by part of their username',
+  description: 'Search for a user by part of their email',
   resolve: (_, { limit, search }) =>
     createLimitedQuery(
-      db.table('users').filter(user => user('username').match(`(?i)${search}`))
+      db.table('users').filter(user => user('email').match(`(?i)${search}`))
     )(limit).run(),
   type: new GraphQLList(User),
 }

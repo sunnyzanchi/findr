@@ -8,20 +8,20 @@ const login = {
     password: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    username: {
+    email: {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (_, { password, username }, context) => {
+  resolve: async (_, { password, email }, context) => {
     const user = await db
       .table('users')
-      .filter({ username })
+      .filter({ email })
       .nth(0)
       .default({})
       .run()
 
     if (!user.id) {
-      throw Error('Username not found')
+      throw Error('Email not found')
     }
 
     const same = await bcrypt.compare(password, user.password)

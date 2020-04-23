@@ -7,7 +7,7 @@ test('logging out returns true and removes the user session', async t => {
   // run concurrently and we don't want them interferring with each other
   const login = `
   mutation {
-    login(username: "b", password: "b")
+    login(email: "b@example.com", password: "b")
   }`
 
   const context = httpContext()

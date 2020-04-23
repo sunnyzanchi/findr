@@ -1,19 +1,19 @@
 const { test } = require('ava')
 const { gql } = require('../../testUtils')
 
-test('can take username argument', async t => {
+test('can take email argument', async t => {
   const query = `
   {
-    user (username: "a") {
+    user (email: "a@a.com") {
       id
-      username
+      email
     }
   }`
 
   const user = await gql(query)
 
   t.truthy(user.id)
-  t.true(user.username === 'a')
+  t.true(user.email === 'a@a.com')
 })
 
 test('can take id argument', async t => {
@@ -21,13 +21,13 @@ test('can take id argument', async t => {
   {
     user (id: "111") {
       id
-      username
+      email
     }
   }`
 
   const user = await gql(query)
   t.truthy(user.id)
-  t.true(user.username === 'a')
+  t.true(user.email === 'a@a.com')
 })
 
 test('throws if neither argument is provided', async t => {
@@ -35,7 +35,7 @@ test('throws if neither argument is provided', async t => {
   {
     user {
       id
-      username
+      email
     }
   }`
   await t.throws(gql(query))

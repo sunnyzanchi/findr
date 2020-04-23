@@ -3,15 +3,15 @@ const { gql } = require('../../testUtils')
 
 test('should be able to add a user', async t => {
   const userToAdd = {
+    email: 'upsertUserTest@example.com',
     password: 'a',
-    username: 'upsertUserTest',
   }
 
   const query = `
   mutation($user: UserInputType!) {
     user(user: $user) {
+      email
       id
-      username
     }
   }
   `
@@ -19,7 +19,7 @@ test('should be able to add a user', async t => {
   const user = await gql(query, { user: userToAdd })
 
   t.truthy(user.id)
-  t.true(user.username === userToAdd.username)
+  t.true(user.email === userToAdd.email)
 })
 
 test('should be able to update a user', async t => {
@@ -29,7 +29,6 @@ test('should be able to update a user', async t => {
     user(user: { id: 111, email: "${email}" }) {
       id
       email
-      username
     }
   }`
 
@@ -43,8 +42,8 @@ test('throws if no user is provided', async t => {
   const query = `
   mutation {
     user {
+      email
       id
-      username
     }
   }
   `
@@ -54,31 +53,31 @@ test('throws if no user is provided', async t => {
 test('throws if no password is provided', async t => {
   const query = `
   mutation {
-    user(user: { username: "a" }) {
+    user(user: { email: "a@a.com" }) {
+      email
       id
-      username
     } 
   }`
   await t.throws(gql(query))
 })
 
-test('throws if no username is provided', async t => {
+test('throws if no email is provided', async t => {
   const query = `
   mutation {
     user(user: { password: "a" }) {
+      email
       id
-      username
     } 
   }`
   await t.throws(gql(query))
 })
 
-test('throws if trying to create a user with an existing username', async t => {
+test('throws if trying to create a user with an existing email', async t => {
   const query = `
   mutation {
-    user(user: { password: "a", username: "a" }) {
+    user(user: { password: "b", email: "b@example.com" }) {
+      email
       id
-      username
     }
   }`
 

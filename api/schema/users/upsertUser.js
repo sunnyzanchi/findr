@@ -41,8 +41,8 @@ const upsertUser = {
     }
 
     // We're inserting a new user
-    if (!user.username) {
-      throw Error('`username` is required for adding a new user')
+    if (!user.email) {
+      throw Error('`email` is required for adding a new user')
     }
 
     if (!user.password) {
@@ -51,7 +51,7 @@ const upsertUser = {
 
     const result = await db
       .table('users')
-      .filter({ username: user.username })
+      .filter({ email: user.email })
       .count()
       .do(count =>
         db.branch(
