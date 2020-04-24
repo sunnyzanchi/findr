@@ -1,5 +1,5 @@
-const { test } = require('ava');
-const { gql } = require('../../testUtils');
+const test = require('ava')
+const { gql } = require('../../testUtils')
 
 test('can get a game', async t => {
   const query = `
@@ -9,16 +9,16 @@ test('can get a game', async t => {
       name
       status
     }
-  }`;
+  }`
 
-  const result = await gql(query);
+  const result = await gql(query)
 
-  t.true(result.id === 'g111');
-  t.true(result.name === 'TestGame1');
-  t.true(result.status === 'PREGAME');
-});
+  t.true(result.id === 'g111')
+  t.true(result.name === 'TestGame1')
+  t.true(result.status === 'PREGAME')
+})
 
-test('throws if id isn\'t provided', async t => {
+test("throws if id isn't provided", async t => {
   const query = `
   {
     game {
@@ -26,12 +26,12 @@ test('throws if id isn\'t provided', async t => {
       name
       status
     }
-  }`;
+  }`
 
-  await t.throws(gql(query));
-});
+  await t.throwsAsync(() => gql(query))
+})
 
-test('throws if the game doesn\'t exist', async t => {
+test("throws if the game doesn't exist", async t => {
   const query = `
   {
     game(id: "definitely doesn't exist"){
@@ -39,7 +39,7 @@ test('throws if the game doesn\'t exist', async t => {
       name
       status
     }
-  }`;
+  }`
 
-  await t.throws(gql(query));
-});
+  await t.throwsAsync(() => gql(query))
+})

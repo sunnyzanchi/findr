@@ -26,7 +26,7 @@ test('should be able to update a user', async t => {
   const email = 'testing@example.com'
   const query = `
   mutation {
-    user(user: { id: 111, email: "${email}" }) {
+    user(user: { id: 555, email: "${email}" }) {
       id
       email
     }
@@ -34,7 +34,7 @@ test('should be able to update a user', async t => {
 
   const user = await gql(query)
 
-  t.true(user.id === '111')
+  t.true(user.id === '555')
   t.true(user.email === email)
 })
 

@@ -1,11 +1,12 @@
 const session = require('express-session')
-const RDBStore = require('session-rethinkdb')(session)
+const RDBStore = require('@zanchi/session-rethinkdb')(session)
 const { db } = require('./db')
 
 const store = new RDBStore(db, {
   browserSessionsMaxAge: 60000,
   clearInterval: 60000,
   table: 'sessions',
+  useIndex: process.env.NODE_ENV !== 'test',
 })
 
 const secret = process.env.SESSION_SECRET

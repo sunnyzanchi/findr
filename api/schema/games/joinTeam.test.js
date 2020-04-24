@@ -1,5 +1,5 @@
-const { test } = require('ava');
-const { gql, httpContext } = require('../../testUtils');
+const test = require('ava')
+const { gql, httpContext } = require('../../testUtils')
 
 const joinTeam = `
 mutation($gameId: ID!, $teamId: ID!) {
@@ -10,35 +10,36 @@ mutation($gameId: ID!, $teamId: ID!) {
       id
     }
   }
-}`;
+}`
 
 test('can join an existing team', async t => {
-  const context = httpContext();
+  // have to be logged in to make a game
+  const context = httpContext()
   await gql(
-    `mutation { login(password: "a", username: "a") }`,
+    `mutation { login(password: "a", email: "a@a.com") }`,
     undefined,
-    context,
-  );
+    context
+  )
 
   const result = await gql(
     joinTeam,
     { gameId: 'g111', teamId: 't111' },
-    context,
-  );
+    context
+  )
 
-  t.true(result.id === 't111');
-  t.true(result.name === 'TestTeam1');
-  t.truthy(result.players.find(p => p.id === '111'));
-});
+  t.true(result.id === 't111')
+  t.true(result.name === 'TestTeam1')
+  t.truthy(result.players.find(p => p.id === '111'))
+})
 
 test('throws if trying to join a team when not logged in', async t => {
-  await t.throws(gql(joinTeam, { gameId: 'g111', teamId: 't111' }));
-});
+  await t.throwsAsync(() => gql(joinTeam, { gameId: 'g111', teamId: 't111' }))
+})
 
-test('throws if game id isn\'t provided', async t => {
-  await t.throws(gql(joinTeam, { teamId: 't111' }));
-});
+test("throws if game id isn't provided", async t => {
+  await t.throwsAsync(() => gql(joinTeam, { teamId: 't111' }))
+})
 
-test('throws if team id isn\'t provided', async t => {
-  await t.throws(gql(joinTeam, { gameId: 'g111' }));
-});
+test("throws if team id isn't provided", async t => {
+  await t.throwsAsync(() => gql(joinTeam, { gameId: 'g111' }))
+})

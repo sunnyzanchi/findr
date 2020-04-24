@@ -37,6 +37,11 @@ r.dbList()
     ])
   )
   .then(() => spinner.succeed('Database setup successful'))
+  /**
+   * -- Only for test db! --
+   * db and tables are set up at this point.
+   * Next .then is to populate the test db with test data.
+   */
   .then(() => {
     if (!process.env.NODE_ENV === 'test') {
       return
@@ -48,6 +53,7 @@ r.dbList()
       Object.keys(data).map(key => r.db(dbName).table(key).insert(data[key]))
     ).then(() => spinner.succeed('Test data loaded'))
   })
+  // TODO: Move this to a .finally
   .then(() => r.getPoolMaster().drain())
   .catch(err => {
     spinner.fail('Unable to set up db, see error below')
