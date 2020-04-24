@@ -43,3 +43,12 @@ npm run dev
 ```
 
 to start a server that will restart on changes.
+
+## Testing
+
+To test, run `npm test`. Make sure rethinkdb is running!
+This will create a `findrtest` database, populate it with necessary data, and run the tests against it, then tear it down.
+
+To generate test coverage, run `npm run coverage`.
+This will generate a `coverage/` directory.
+You can access the `index.html` file there to see test coverage.

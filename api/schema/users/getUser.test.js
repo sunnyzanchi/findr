@@ -1,4 +1,4 @@
-const { test } = require('ava')
+const test = require('ava')
 const { gql } = require('../../testUtils')
 
 test('can take email argument', async t => {
@@ -38,5 +38,5 @@ test('throws if neither argument is provided', async t => {
       email
     }
   }`
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })

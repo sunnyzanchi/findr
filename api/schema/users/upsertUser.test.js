@@ -1,4 +1,4 @@
-const { test } = require('ava')
+const test = require('ava')
 const { gql } = require('../../testUtils')
 
 test('should be able to add a user', async t => {
@@ -47,7 +47,7 @@ test('throws if no user is provided', async t => {
     }
   }
   `
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })
 
 test('throws if no password is provided', async t => {
@@ -58,7 +58,7 @@ test('throws if no password is provided', async t => {
       id
     } 
   }`
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })
 
 test('throws if no email is provided', async t => {
@@ -69,7 +69,7 @@ test('throws if no email is provided', async t => {
       id
     } 
   }`
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })
 
 test('throws if trying to create a user with an existing email', async t => {
@@ -81,5 +81,5 @@ test('throws if trying to create a user with an existing email', async t => {
     }
   }`
 
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })

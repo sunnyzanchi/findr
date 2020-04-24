@@ -1,4 +1,4 @@
-const { test } = require('ava')
+const test = require('ava')
 const { gql, httpContext } = require('../../testUtils')
 
 test('logging in returns true and sets the user session', async t => {
@@ -25,7 +25,7 @@ test('throws if no password provided', async t => {
     login(email: "a@a.com")
   }`
 
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })
 
 test('throws if no email provided', async t => {
@@ -34,7 +34,7 @@ test('throws if no email provided', async t => {
     login(password: "a")
   }`
 
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })
 
 test('throws if password is incorrect', async t => {
@@ -43,7 +43,7 @@ test('throws if password is incorrect', async t => {
     login(password: "definitely the wrong password", email: "a@a.com")
   }`
 
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })
 
 test("throws if user doesn't exist", async t => {
@@ -52,5 +52,5 @@ test("throws if user doesn't exist", async t => {
     login(password: "a", email: "thisUserDoesntExist")
   }`
 
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })

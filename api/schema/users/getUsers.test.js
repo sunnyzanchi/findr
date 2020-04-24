@@ -1,4 +1,4 @@
-const { test } = require('ava')
+const test = require('ava')
 const { gql } = require('../../testUtils')
 
 const searchString = 'a'
@@ -44,5 +44,5 @@ test("throws if search argument isn't provided", async t => {
     }
   }
   `
-  await t.throws(gql(query))
+  await t.throwsAsync(() => gql(query))
 })

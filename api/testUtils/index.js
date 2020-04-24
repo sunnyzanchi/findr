@@ -11,7 +11,7 @@ const gql = (query, variables, context) =>
   graphql(schema, query, undefined, context, variables)
     .then(result => {
       if (result.errors) {
-        throw result.errors
+        throw Error(result.errors)
       }
       return result.data
     })

@@ -29,9 +29,9 @@
     "session-rethinkdb": "^2.0.1"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^3.7.1",
     "nodemon": "^1.17.1",
-    "nyc": "^11.6.0",
+    "nyc": "^15.0.1",
     "ora": "^2.0.0"
   },
   "ava": {
