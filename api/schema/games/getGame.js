@@ -1,6 +1,6 @@
-const { GraphQLID, GraphQLNonNull } = require('graphql');
-const { db } = require('../../db');
-const { Game } = require('./type');
+const { GraphQLID, GraphQLNonNull } = require('graphql')
+const { db } = require('../../db')
+const { Game } = require('./type')
 
 const getGame = {
   args: {
@@ -9,18 +9,15 @@ const getGame = {
     },
   },
   resolve: async (_, { id }) => {
-    const result = await db
-      .table('games')
-      .get(id)
-      .run();
+    const result = await db.table('games').get(id).run()
 
     if (result === null) {
-      throw Error('Could not find game with that id');
+      throw Error('Could not find game with that id')
     }
 
-    return result;
+    return result
   },
   type: Game,
-};
+}
 
-module.exports = getGame;
+module.exports = getGame

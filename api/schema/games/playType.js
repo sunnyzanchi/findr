@@ -1,5 +1,5 @@
-const { GraphQLObjectType, GraphQLString } = require('graphql');
-const { User } = require('../users');
+const { GraphQLObjectType, GraphQLString } = require('graphql')
+const { User } = require('../users')
 
 const Play = new GraphQLObjectType({
   fields: {
@@ -16,7 +16,7 @@ const Play = new GraphQLObjectType({
     },
   },
   name: 'Play',
-});
+})
 
 // const PlayInputType = new GraphQLInputObjectType({
 //   fields: {
@@ -27,4 +27,4 @@ const Play = new GraphQLObjectType({
 //   name: 'PlayInputType',
 // });
 
-module.exports = { Play };
+module.exports = { Play }

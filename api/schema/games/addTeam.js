@@ -1,9 +1,9 @@
-const { GraphQLID, GraphQLNonNull } = require('graphql');
-const randomColor = require('random-color');
-const { db } = require('../../db');
-const { isLoggedIn } = require('../../utils/auth');
-const { Team, TeamInputType } = require('./teamType');
-const uuid = require('uuid/v4');
+const { GraphQLID, GraphQLNonNull } = require('graphql')
+const randomColor = require('random-color')
+const { db } = require('../../db')
+const { isLoggedIn } = require('../../utils/auth')
+const { Team, TeamInputType } = require('./teamType')
+const uuid = require('uuid/v4')
 
 /**
  * This lets a player create a new team in a game that has not started.
@@ -26,36 +26,35 @@ const addTeam = {
   },
   resolve: async (_, { gameId, team }, context) => {
     if (!isLoggedIn(context.req)) {
-      throw Error('Must be logged in to add a team');
+      throw Error('Must be logged in to add a team')
     }
 
-    const currentUserId = context.req.session.user.id;
+    const currentUserId = context.req.session.user.id
 
     const result = await db
       .table('games')
       .get(gameId)
-      .update(game =>
-        db
-          .branch(
-            game('teams').contains(
-              t => t('name').eq(team.name)
-            ),
+      .update(
+        game =>
+          db.branch(
+            game('teams').contains(t => t('name').eq(team.name)),
             db.error('Team with that name already exists'),
             {
-              teams: game('teams').fold(
-                [],
-                (acc, t) => db.branch(
-                  t('players').count().eq(1).and(
-                    t('players').contains(currentUserId)
-                  ),
-                  acc,
-                  acc.append(
-                    t.merge({
-                      players: t('players').difference([currentUserId]),
-                    })
+              teams: game('teams')
+                .fold([], (acc, t) =>
+                  db.branch(
+                    t('players')
+                      .count()
+                      .eq(1)
+                      .and(t('players').contains(currentUserId)),
+                    acc,
+                    acc.append(
+                      t.merge({
+                        players: t('players').difference([currentUserId]),
+                      })
+                    )
                   )
                 )
-              )
                 .default([])
                 .append({
                   ...team,
@@ -66,22 +65,25 @@ const addTeam = {
                   id: uuid(),
                   players: [currentUserId],
                 }),
-            }), { returnChanges: true })
-      .run();
+            }
+          ),
+        { returnChanges: true }
+      )
+      .run()
 
     if (result.first_error) {
-      throw Error(result.first_error);
+      throw Error(result.first_error)
     }
     // The object returned by .update() will have skipped: 1 if the document doesn't exist
     if (result.skipped) {
-      throw Error('Could not find game with that id');
+      throw Error('Could not find game with that id')
     }
 
     // We need to find the team we just added because the above query updates the
     // game document, but this query expects the Team type to be returned
-    return result.changes[0].new_val.teams.find(t => t.name === team.name);
+    return result.changes[0].new_val.teams.find(t => t.name === team.name)
   },
   type: Team,
-};
+}
 
-module.exports = addTeam;
+module.exports = addTeam

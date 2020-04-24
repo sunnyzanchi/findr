@@ -5,9 +5,9 @@ const {
   GraphQLList,
   GraphQLObjectType,
   GraphQLString,
-} = require('graphql');
-const { User } = require('../users');
-const { userLoader } = require('../../loaders');
+} = require('graphql')
+const { User } = require('../users')
+const { userLoader } = require('../../loaders')
 
 const Team = new GraphQLObjectType({
   fields: {
@@ -21,7 +21,7 @@ const Team = new GraphQLObjectType({
       type: GraphQLString,
     },
     players: {
-      resolve: (team) => userLoader().loadMany(team.players),
+      resolve: team => userLoader().loadMany(team.players),
       type: new GraphQLList(User),
     },
     score: {
@@ -29,7 +29,7 @@ const Team = new GraphQLObjectType({
     },
   },
   name: 'Team',
-});
+})
 
 const TeamInputType = new GraphQLInputObjectType({
   fields: {
@@ -41,6 +41,6 @@ const TeamInputType = new GraphQLInputObjectType({
     },
   },
   name: 'TeamInputType',
-});
+})
 
-module.exports = { Team, TeamInputType };
+module.exports = { Team, TeamInputType }

@@ -7,12 +7,12 @@ const {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} = require('graphql');
-const { GraphQLDateTime } = require('graphql-iso-date');
-const { Play } = require('./playType');
-const { Team } = require('./teamType');
-const { User } = require('../users');
-const { userLoader } = require('../../loaders');
+} = require('graphql')
+const { GraphQLDateTime } = require('graphql-iso-date')
+const { Play } = require('./playType')
+const { Team } = require('./teamType')
+const { User } = require('../users')
+const { userLoader } = require('../../loaders')
 
 const GameStatus = new GraphQLEnumType({
   name: 'GameStatus',
@@ -21,7 +21,7 @@ const GameStatus = new GraphQLEnumType({
     PREGAME: { value: 'PREGAME' },
     STARTED: { value: 'STARTED' },
   },
-});
+})
 
 const Game = new GraphQLObjectType({
   fields: {
@@ -29,7 +29,7 @@ const Game = new GraphQLObjectType({
       type: GraphQLDateTime,
     },
     createdBy: {
-      resolve: (game) => userLoader().load(game.createdBy),
+      resolve: game => userLoader().load(game.createdBy),
       type: User,
     },
     duration: {
@@ -65,7 +65,7 @@ const Game = new GraphQLObjectType({
     },
   },
   name: 'Game',
-});
+})
 
 const GameInputType = new GraphQLInputObjectType({
   fields: {
@@ -83,9 +83,9 @@ const GameInputType = new GraphQLInputObjectType({
     },
   },
   name: 'GameInputType',
-});
+})
 
 module.exports = {
   Game,
   GameInputType,
-};
+}
