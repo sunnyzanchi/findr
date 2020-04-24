@@ -1,5 +1,5 @@
-const userLoader = require('./users');
+const userLoader = require('./users')
 
 module.exports = {
   userLoader,
-};
+}

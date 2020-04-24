@@ -1,56 +1,56 @@
-const { test } = require('ava');
-const { gql, httpContext } = require('../../testUtils');
+const test = require('ava')
+const { gql, httpContext } = require('../../testUtils')
 
 test('logging in returns true and sets the user session', async t => {
   const query = `
   mutation {
-    login (password: "a", username: "a")
-  }`;
+    login (password: "a", email: "a@a.com")
+  }`
 
-  const context = httpContext();
+  const context = httpContext()
 
-  const result = await gql(query, undefined, context);
+  const result = await gql(query, undefined, context)
 
-  const session = context.req.session;
+  const session = context.req.session
 
-  t.true(result);
-  t.true(session.user.id === '111');
-  t.true(session.user.username === 'a');
-  t.falsy(session.user.password);
-});
+  t.true(result)
+  t.true(session.user.id === '111')
+  t.true(session.user.email === 'a@a.com')
+  t.falsy(session.user.password)
+})
 
 test('throws if no password provided', async t => {
   const query = `
   mutation {
-    login(username: "a")
-  }`;
+    login(email: "a@a.com")
+  }`
 
-  await t.throws(gql(query));
-});
+  await t.throwsAsync(() => gql(query))
+})
 
-test('throws if no username provided', async t => {
+test('throws if no email provided', async t => {
   const query = `
   mutation {
     login(password: "a")
-  }`;
+  }`
 
-  await t.throws(gql(query));
-});
+  await t.throwsAsync(() => gql(query))
+})
 
 test('throws if password is incorrect', async t => {
   const query = `
   mutation {
-    login(password: "definitely the wrong password", username: "a")
-  }`;
+    login(password: "definitely the wrong password", email: "a@a.com")
+  }`
 
-  await t.throws(gql(query));
-});
+  await t.throwsAsync(() => gql(query))
+})
 
-test('throws if user doesn\'t exist', async t => {
+test("throws if user doesn't exist", async t => {
   const query = `
   mutation {
-    login(password: "a", username: "thisUserDoesntExist")
-  }`;
+    login(password: "a", email: "thisUserDoesntExist")
+  }`
 
-  await t.throws(gql(query));
-});
+  await t.throwsAsync(() => gql(query))
+})

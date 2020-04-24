@@ -2,8 +2,8 @@ addons:
   rethinkdb: '2.3.6'
 
 before_install:
-  - yarn --cwd ./api
-  - yarn --cwd ./client
+  - npm run --prefix ./api install
+  - npm run --prefix ./client install
 
 language: node_js
 
@@ -11,6 +11,5 @@ node_js:
   - 'node'
 
 script:
-  - yarn lint
-  - yarn test
-  
+  - npm run lint
+  - npm run test

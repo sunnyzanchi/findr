@@ -1,10 +1,10 @@
-# Scavenge Client
-This runs the client for the Scavenge front end.
+# Findr Client
+This runs the client for the Findr front end.
 
 ## Start
 To start, run:
 ```
-yarn start
+npm start
 ```
 
 The app will be running on port 3000.

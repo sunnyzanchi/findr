@@ -1,42 +1,42 @@
-const { test } = require('ava');
-const { gql } = require('../../testUtils');
+const test = require('ava')
+const { gql } = require('../../testUtils')
 
-test('can take username argument', async t => {
+test('can take email argument', async t => {
   const query = `
   {
-    user (username: "a") {
+    user (email: "a@a.com") {
       id
-      username
+      email
     }
-  }`;
+  }`
 
-  const user = await gql(query);
+  const user = await gql(query)
 
-  t.truthy(user.id);
-  t.true(user.username === 'a');
-});
+  t.truthy(user.id)
+  t.true(user.email === 'a@a.com')
+})
 
 test('can take id argument', async t => {
   const query = `
   {
     user (id: "111") {
       id
-      username
+      email
     }
-  }`;
+  }`
 
-  const user = await gql(query);
-  t.truthy(user.id);
-  t.true(user.username === 'a');
-});
+  const user = await gql(query)
+  t.truthy(user.id)
+  t.true(user.email === 'a@a.com')
+})
 
 test('throws if neither argument is provided', async t => {
   const query = `
   {
     user {
       id
-      username
+      email
     }
-  }`;
-  await t.throws(gql(query));
-});
+  }`
+  await t.throwsAsync(() => gql(query))
+})

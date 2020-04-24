@@ -1,6 +1,6 @@
-const { GraphQLObjectType } = require('graphql');
-const { queries: gameQueries } = require('./games');
-const { queries: userQueries } = require('./users');
+const { GraphQLObjectType } = require('graphql')
+const { queries: gameQueries } = require('./games')
+const { queries: userQueries } = require('./users')
 
 const query = new GraphQLObjectType({
   fields: {
@@ -8,6 +8,6 @@ const query = new GraphQLObjectType({
     ...userQueries,
   },
   name: 'Queries',
-});
+})
 
-module.exports = query;
+module.exports = query

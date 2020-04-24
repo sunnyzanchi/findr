@@ -1,7 +1,7 @@
-const { GraphQLInt, GraphQLList, GraphQLString } = require('graphql');
-const { GraphQLNonNull } = require('graphql');
-const { createLimitedQuery, db } = require('../../db');
-const { User } = require('./type');
+const { GraphQLInt, GraphQLList, GraphQLString } = require('graphql')
+const { GraphQLNonNull } = require('graphql')
+const { createLimitedQuery, db } = require('../../db')
+const { User } = require('./type')
 
 const getUsers = {
   args: {
@@ -12,15 +12,12 @@ const getUsers = {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  description: 'Search for a user by part of their username',
+  description: 'Search for a user by part of their email',
   resolve: (_, { limit, search }) =>
     createLimitedQuery(
-      db
-        .table('users')
-        .filter(user => user('username').match(`(?i)${search}`))
-    )(limit)
-      .run(),
+      db.table('users').filter(user => user('email').match(`(?i)${search}`))
+    )(limit).run(),
   type: new GraphQLList(User),
-};
+}
 
-module.exports = getUsers;
+module.exports = getUsers

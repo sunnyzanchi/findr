@@ -1,0 +1,5 @@
+node_modules/*
+api/node_modules/*
+client/.cache/*
+client/dist/*
+client/node_modules/*

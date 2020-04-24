@@ -1,5 +1,5 @@
-# Scavenge
-Scavenge is a web app for playing scavenger hunts with a group of people.
+# Findr
+Findr is a web app for playing scavenger hunts with a group of people.
 
 ## Run
 To run the app, start the API server:

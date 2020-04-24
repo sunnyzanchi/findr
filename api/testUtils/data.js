@@ -17,28 +17,28 @@ module.exports = {
       ],
     },
   ],
-  'users': [
+  users: [
     {
       id: '111',
+      email: 'a@a.com',
       password: '$2a$12$qbsqTknkqPjNaND87GKjjOok21kRmIFemtYlCwC54vm3.tE5ldTjO',
-      username: 'a',
     },
     {
       id: '222',
+      email: 'b@example.com',
       password: '$2a$12$odAW7l28nSFCnDEj0Dr1geelNVbyJX4Hj0mlnrCZOSZCaFaOje3LK',
-      username: 'b',
     },
     {
+      email: 'c@example.com',
       id: '333',
-      username: 'c',
     },
     {
+      email: 'd@example.com',
       id: '444',
-      username: 'd',
     },
     {
+      email: 'e@example.com',
       id: '555',
-      username: 'e',
     },
   ],
-};
+}

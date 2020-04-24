@@ -4,9 +4,9 @@ const {
   GraphQLInt,
   GraphQLObjectType,
   GraphQLString,
-} = require('graphql');
-const { GraphQLDateTime } = require('graphql-iso-date');
-const Username = require('./username');
+} = require('graphql')
+const { GraphQLDateTime } = require('graphql-iso-date')
+const Username = require('./username')
 
 const User = new GraphQLObjectType({
   fields: {
@@ -42,7 +42,7 @@ const User = new GraphQLObjectType({
     },
   },
   name: 'User',
-});
+})
 
 const UserInputType = new GraphQLInputObjectType({
   fields: {
@@ -63,9 +63,9 @@ const UserInputType = new GraphQLInputObjectType({
     },
   },
   name: 'UserInputType',
-});
+})
 
 module.exports = {
   User,
   UserInputType,
-};
+}

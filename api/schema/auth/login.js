@@ -1,41 +1,41 @@
-const bcrypt = require('bcrypt');
-const { GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql');
-const { dissoc } = require('ramda');
-const { db } = require('../../db');
+const bcrypt = require('bcrypt')
+const { GraphQLBoolean, GraphQLNonNull, GraphQLString } = require('graphql')
+const { dissoc } = require('ramda')
+const { db } = require('../../db')
+const ERRORS = require('../errorCodes')
 
 const login = {
   args: {
     password: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    username: {
+    email: {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (_, { password, username }, context) => {
-    const user = await
-      db
-        .table('users')
-        .filter({ username })
-        .nth(0)
-        .default({})
-        .run();
+  resolve: async (_, { password, email }, context) => {
+    const user = await db
+      .table('users')
+      .filter({ email })
+      .nth(0)
+      .default({})
+      .run()
 
     if (!user.id) {
-      throw Error('Username not found');
+      throw Error(ERRORS.EMAIL_NOT_FOUND)
     }
 
-    const same = await bcrypt.compare(password, user.password);
+    const same = await bcrypt.compare(password, user.password)
     if (!same) {
-      throw Error('Incorrect password');
+      throw Error(ERRORS.INCORRECT_PASSWORD)
     }
 
     // express-session relies on us mutating the req.session to set the session
-    context.req.session.user = dissoc('password', user);
+    context.req.session.user = dissoc('password', user)
 
-    return true;
+    return true
   },
   type: GraphQLBoolean,
-};
+}
 
-module.exports = login;
+module.exports = login
