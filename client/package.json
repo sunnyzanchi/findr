@@ -30,15 +30,15 @@
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/addons": "^5.3.18",
-    "@storybook/preact": "^5.3.18",
-    "babel-loader": "^8.1.0",
-    "parcel": "^1.12.4",
-    "postcss-modules": "^1.5.0",
+    "@storybook/preact": "^6.5.15",
+    "babel-loader": "^8.3.0",
+    "parcel": "^2.8.2",
+    "postcss-modules": "^6.0.0",
     "sass": "^1.26.3",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^13.2.0"
   },
   "dependencies": {
-    "astroturf": "^0.10.3",
+    "astroturf": "^1.1.0",
     "preact": "^10.4.0",
     "preact-router": "^3.2.1",
     "reset-css": "^5.0.1"
